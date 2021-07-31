@@ -1,17 +1,48 @@
-import React from 'react';
 import ReactDOM from 'react-dom';
-import './index.css';
-import App from './App';
-import reportWebVitals from './reportWebVitals';
+import Header from './component/header/header';
+import './index.css'
+import './css/css/fontello-embedded.css'
+//import Main from './component/main/main';
+import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
+import Aside from './component/sidebar/sidebar';
+import Routes from './setting/route';
 
-ReactDOM.render(
-  <React.StrictMode>
-    <App />
-  </React.StrictMode>,
-  document.getElementById('root')
-);
+const Index = () => {
+  const arr = [
+    { path: '/', iconName: 'home' },
+    { path: '/carts/cart', iconName: 'box' },
+    { path: '/products', iconName: 'cog' },
+    { path: '/users', iconName: 'users' }, 
+    { path: '/setting', iconName: 'bag' },
+    { path: '/login', iconName: 'logout' }, 
+    { path: "", iconName: 'moon' }]
 
-// If you want to start measuring performance in your app, pass a function
-// to log results (for example: reportWebVitals(console.log))
-// or send to an analytics endpoint. Learn more: https://bit.ly/CRA-vitals
-reportWebVitals();
+  return (
+    <>
+      <Header />
+      <Router>
+        <Aside arr={arr}/>
+        <Switch>
+          {
+            Routes.map(({ containerpath, name, path }) => {
+              <Route key={name} exact path={path}>
+                {
+                  props => {
+                    let Container = require(`${containerpath}`).default
+                    return (
+                      <Container {...props} />
+                    )
+                  }
+                }
+              </Route>
+            })
+          }
+        </Switch>
+      </Router>
+    </>
+  )
+}
+
+
+ReactDOM.render(<Index />, document.getElementById('root'))
+

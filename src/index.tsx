@@ -1,48 +1,24 @@
-import ReactDOM from 'react-dom';
-import Header from './component/header/header';
-import './index.css'
-import './css/css/fontello-embedded.css'
-//import Main from './component/main/main';
-import { BrowserRouter as Router, Switch, Route } from 'react-router-dom'
-import Aside from './component/sidebar/sidebar';
-import Routes from './setting/route';
+import ReactDOM from "react-dom";
+import Aside from "./components/aside/aside";
+import "./index.css";
+import { BrowserRouter as Router, Route, Switch } from "react-router-dom";
+import styled from "styled-components";
+
+const Wrapper=styled.div`
+  width: 100%;
+  display: flex;
+`
+
 
 const Index = () => {
-  const arr = [
-    { path: '/', iconName: 'home' },
-    { path: '/carts/cart', iconName: 'box' },
-    { path: '/products', iconName: 'cog' },
-    { path: '/users', iconName: 'users' }, 
-    { path: '/setting', iconName: 'bag' },
-    { path: '/login', iconName: 'logout' }, 
-    { path: "", iconName: 'moon' }]
-
   return (
-    <>
-      <Header />
-      <Router>
-        <Aside arr={arr}/>
-        <Switch>
-          {
-            Routes.map(({ containerpath, name, path }) => {
-              <Route key={name} exact path={path}>
-                {
-                  props => {
-                    let Container = require(`${containerpath}`).default
-                    return (
-                      <Container {...props} />
-                    )
-                  }
-                }
-              </Route>
-            })
-          }
-        </Switch>
-      </Router>
-    </>
-  )
-}
+    <Wrapper>
+    <Router>
+      <Aside />
 
+    </Router>
+    </Wrapper>
+  );
+};
 
-ReactDOM.render(<Index />, document.getElementById('root'))
-
+ReactDOM.render(<Index />, document.getElementById("root"));

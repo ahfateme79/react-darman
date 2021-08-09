@@ -5,7 +5,7 @@ import { Link } from "react-router-dom";
 export const Asideparent=styled.aside`
     width: 20%;
     height: 100vh;
-    background-color:#7400b8;
+    background-color:#14213d;
 `
 export const Asideheading=styled.h3`
     color: white;
@@ -19,11 +19,11 @@ export const Itemsparen=styled.ul`
 export const Items=styled.li`
     margin: 20px 0;
     display: flex;
-    height: 40px;
+    height: 50px;
     align-items: center;
 `
 export const Icon=styled.i`
-    font-size: 30px;
+    font-size: 20px;
     color: white;
 `
 export const Linkstyle=styled(Link)`

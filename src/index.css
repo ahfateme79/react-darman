@@ -7,3 +7,10 @@ body {
   width: 100%;
   overflow-x: hidden;
  }
+
+ul{
+  list-style-type: none;
+}
+a{
+  text-decoration: none;
+}

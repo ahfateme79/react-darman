@@ -12,24 +12,30 @@ const Aside = () => {
     {
       title: "Home",
       path: "/",
+      icon:"home"
     },
     {
       title: "Products",
       path: "/Products",
+      icon:"bag"
     },
     {
       title: "Users",
       path: "/Users",
+      icon:"users"
     },
     {
       title: "Setting",
       path: "/Setting",
+      icon:"cog"
     },
     {
       title: "Login",
       path: "/Login",
+      icon:"login"
     },
   ];
+
 
   return (
     <Asideparent>
@@ -38,7 +44,7 @@ const Aside = () => {
         {array.map((arr, index) => {
           return (
             <Items key={index}>
-              <Icon />
+              <Icon className={`icon-${arr.icon}`}/>
               <Linkstyle to={arr.path}>{arr.title}</Linkstyle>
             </Items>
           );

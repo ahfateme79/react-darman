@@ -13,4 +13,4 @@ export const Rowbox=styled.div`
     justify-content:space-evenly;
     min-height: 250px;
     align-items: center;
-`
+ `

@@ -30,7 +30,7 @@ const Aside = () => {
       icon:"cog"
     },
     {
-      title: "Login",
+      title: "Logout",
       path: "/Login",
       icon:"login"
     },
@@ -54,3 +54,4 @@ const Aside = () => {
   );
 };
 export default Aside;
+

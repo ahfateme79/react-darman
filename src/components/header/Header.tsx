@@ -7,18 +7,19 @@ import {
   Notiicon,
   Icons,
   Heading,
-  Username
+  Username,
 } from "./headerstyle";
 import Userimage from "../../assets/img/user.jpg";
 
 const notiarr = ["mail", "bell"];
 
 const Header = () => {
+  const user = sessionStorage.getItem("username");
+
   return (
     <Headerparen>
       <Heading>Dashboard</Heading>
       <Usersection>
-       
         <Notification>
           {notiarr.map((n) => {
             return (
@@ -28,9 +29,9 @@ const Header = () => {
             );
           })}
         </Notification>
-         <User href="">
+        <User href="">
           <Userimg src={Userimage} alt="user" />
-          <Username>John Doe</Username>
+          <Username>{user ? user : "login"}</Username>
         </User>
       </Usersection>
     </Headerparen>

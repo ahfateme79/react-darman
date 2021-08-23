@@ -85,6 +85,7 @@ const Login: React.FC = () => {
         <Submit>submit</Submit>
         <button onClick={() => dispach(light())}>click!</button>
         <span>{val === false ? "light" : "dark"}</span>
+        {/* <span>hello</span> */}
       </Formlogin>
     </Style>
   );

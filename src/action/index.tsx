@@ -1,9 +1,9 @@
-export const Login = () => {
+export const Loginn = () => {
   return {
     type: "Login",
   };
 };
-export const Logout = () => {
+export const Logoutt = () => {
   return {
     type: "logout",
   };
@@ -11,16 +11,23 @@ export const Logout = () => {
 export const light = () => {
   return {
     type: "light",
-    textcolor: "black",
-    bgcolor: "white",
-    btncolor: "red",
   };
 };
 export const dark = () => {
   return {
     type: "dark",
-    textcolor: "white",
-    bgcolor: "black",
-    btncolor: "pink",
   };
 };
+
+// export const themelight = {
+//   textcolor: "black",
+//   bgcolor: "white",
+//   btncolor: "pink",
+// };
+
+// export const themedark = {
+//   textcolor: "white",
+//   bgcolor: "black",
+//   btncolor: "blue",
+// };
+

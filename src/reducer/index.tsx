@@ -5,6 +5,6 @@ import Loginreducer from './login'
 
 const Allreducer=combineReducers({
     theme:Themeredux,
-    login:Loginreducer,
+    logined:Loginreducer,
 })
 export default Allreducer

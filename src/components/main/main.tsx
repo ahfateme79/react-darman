@@ -1,6 +1,8 @@
 import Chart from "../chart/chart";
 import Number from "../number/number";
 import { Mainstyle, Rowbox } from "./mainstyle";
+import "../../index.css";
+import { useSelector } from "react-redux";
 
 const aray = [
   {
@@ -26,6 +28,8 @@ const aray = [
 ];
 
 const Main: React.FC = () => {
+  const val = useSelector((state: any) => state.theme);
+
   return (
     <Mainstyle>
       <Rowbox>

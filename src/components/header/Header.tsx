@@ -10,6 +10,7 @@ import {
   Username,
 } from "./headerstyle";
 import Userimage from "../../assets/img/user.jpg";
+import { useSelector } from "react-redux";
 
 const notiarr = ["mail", "bell"];
 
@@ -31,7 +32,7 @@ const Header = () => {
         </Notification>
         <User href="">
           <Userimg src={Userimage} alt="user" />
-          <Username>{user ? user : "login"}</Username>
+          <Username>{user && user}</Username>
         </User>
       </Usersection>
     </Headerparen>

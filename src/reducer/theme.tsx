@@ -1,11 +1,12 @@
-const Themeredux=(state=false,action:any)=>{
-    switch (action.type) {
+
+const Themeredux = (state = false, action: any) => {
+  switch (action.type) {
     case "light":
-      return state =true;
+      return (state = true);
     case "dark":
-      return state=false;
+      return (state = false);
     default:
       return state;
   }
-}
-export default Themeredux
+};
+export default Themeredux;

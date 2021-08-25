@@ -1,4 +1,6 @@
 import styled from "styled-components";
+// import { themedark, themelight } from "../../action";
+
 
 
 export const Headerparen=styled.header`

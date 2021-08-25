@@ -1,7 +1,8 @@
 import { useState } from "react";
-import { useSelector, useDispatch } from "react-redux";
+import { useDispatch, useSelector } from "react-redux";
+import { useHistory } from "react-router-dom";
 import styled from "styled-components";
-import { light } from "../../action";
+import { Loginn } from "../../action";
 
 const Style = styled.div`
   width: 100%;
@@ -34,13 +35,16 @@ const Login: React.FC = () => {
     password: "",
   });
 
+  const logedin = useSelector((state: any) => state.logined);
+  const dispach = useDispatch();
+  const history = useHistory();
   const handlechange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setInfo({ ...info, [name]: value });
   };
-
   const handlesubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
+
     fetch("https://fakestoreapi.com/auth/login", {
       method: "POST",
       body: JSON.stringify(info),
@@ -54,7 +58,10 @@ const Login: React.FC = () => {
         if (result) {
           sessionStorage.setItem("auth", result.token);
           sessionStorage.setItem("username", info.username);
-          // alert("login sucses!")
+          dispach(Loginn());
+
+          // dispach({type:"login",payload:result.token});
+          history.push("/");
         } else {
           console.log("Username or Password is incorrect :(");
         }
@@ -63,8 +70,6 @@ const Login: React.FC = () => {
         console.log("Something went wrong :(");
       });
   };
-  const val = useSelector((state: any) => state.theme);
-  const dispach = useDispatch();
   return (
     <Style>
       <Formlogin onSubmit={handlesubmit}>
@@ -83,10 +88,8 @@ const Login: React.FC = () => {
           onChange={handlechange}
         />
         <Submit>submit</Submit>
-        <button onClick={() => dispach(light())}>click!</button>
-        <span>{val === false ? "light" : "dark"}</span>
-        {/* <span>hello</span> */}
       </Formlogin>
+      <p>please login with usename:mor_2314 and pas:83r5^_</p>
     </Style>
   );
 };

@@ -15,7 +15,7 @@ import routes from "./router";
 import Login from "./containers/login/login";
 import { createStore } from "redux";
 import Allreducer from "./reducer";
-import { Provider } from "react-redux";
+import { Provider, useSelector } from "react-redux";
 
 const store = createStore(Allreducer);
 
@@ -35,6 +35,7 @@ interface propsprivet {
 
 const Privetrout: React.FC<propsprivet> = ({ children, ...res }) => {
   const token = sessionStorage.getItem("auth");
+  // const logedin = useSelector((state: any) => state.logined);
 
   return (
     <Route
@@ -43,18 +44,15 @@ const Privetrout: React.FC<propsprivet> = ({ children, ...res }) => {
         token ? (
           children
         ) : (
-          <Redirect
-            to={{
-              pathname: "/login",
-              state: { from: location },
-            }}
-          />
+          <Redirect to={{ pathname: "/login", state: { from: location } }} />
         )
       }
     />
   );
 };
+
 const Index = () => {
+  // const val = useSelector((state: any) => state.theme);
 
   return (
     <Provider store={store}>

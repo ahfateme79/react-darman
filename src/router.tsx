@@ -19,6 +19,11 @@ const routes = [
     path: "/users",
     containerPath: "./containers/users/users",
   },
+    {
+    name: "setting",
+    path: "/setting",
+    containerPath: "./containers/setting/setting",
+  },
   {
     name: "login",
     path: "/login",

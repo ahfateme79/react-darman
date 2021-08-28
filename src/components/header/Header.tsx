@@ -11,11 +11,28 @@ import {
 } from "./headerstyle";
 import Userimage from "../../assets/img/user.jpg";
 import { useSelector } from "react-redux";
+import { useState } from "react";
 
 const notiarr = ["mail", "bell"];
 
 const Header = () => {
   const user = sessionStorage.getItem("username");
+  const [profile, setProfile] = useState<{ src: any }>({
+    src: "",
+  });
+  const baseurl="http://localhost:3000/"
+  const clickhandler = (e: React.ChangeEvent<HTMLInputElement>) => {
+    var event = e.target.files;
+    // var g = event[0].name;
+    // e.preventDefault()
+    console.log(e.target.files);
+    console.log(profile.src);
+    if (event != null) {
+      setProfile({ src:baseurl + event[0].name });
+      console.log(event[0].name)
+    }
+  };
+
 
   return (
     <Headerparen>
@@ -30,8 +47,9 @@ const Header = () => {
             );
           })}
         </Notification>
-        <User href="">
-          <Userimg src={Userimage} alt="user" />
+        <User>
+          <Userimg src={profile.src} alt="user" />
+          <input type="file" onChange={clickhandler} />
           <Username>{user && user}</Username>
         </User>
       </Usersection>

@@ -34,8 +34,8 @@ interface propsprivet {
 }
 
 const Privetrout: React.FC<propsprivet> = ({ children, ...res }) => {
-  const token = sessionStorage.getItem("auth");
   // const logedin = useSelector((state: any) => state.logined);
+  const token=sessionStorage.getItem("auth")
 
   return (
     <Route

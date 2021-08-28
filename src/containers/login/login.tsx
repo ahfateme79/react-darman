@@ -38,6 +38,7 @@ const Login: React.FC = () => {
   const logedin = useSelector((state: any) => state.logined);
   const dispach = useDispatch();
   const history = useHistory();
+
   const handlechange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
     setInfo({ ...info, [name]: value });
@@ -56,11 +57,13 @@ const Login: React.FC = () => {
       .then((res) => res.json())
       .then((result) => {
         if (result) {
-          sessionStorage.setItem("auth", result.token);
-          sessionStorage.setItem("username", info.username);
-          dispach(Loginn());
-
-          // dispach({type:"login",payload:result.token});
+          // dispach({
+          //   type: "login",
+          //   payload: [result.token, info.username],
+          // });
+          sessionStorage.setItem('auth',result.token)
+          sessionStorage.setItem('username',info.username)
+          dispach(Loginn())
           history.push("/");
         } else {
           console.log("Username or Password is incorrect :(");

@@ -17,22 +17,26 @@ const notiarr = ["mail", "bell"];
 
 const Header = () => {
   const user = sessionStorage.getItem("username");
-  const [profile, setProfile] = useState<{ src: any }>({
-    src: "",
+  const [profile, setProfile] = useState<{ imagePreviewUrl: any }>({
+    imagePreviewUrl: "",
   });
-  const baseurl="http://localhost:3000/"
+  const baseurl = "http://localhost:3000/";
   const clickhandler = (e: React.ChangeEvent<HTMLInputElement>) => {
-    var event = e.target.files;
-    // var g = event[0].name;
-    // e.preventDefault()
-    console.log(e.target.files);
-    console.log(profile.src);
-    if (event != null) {
-      setProfile({ src:baseurl + event[0].name });
-      console.log(event[0].name)
+    e.preventDefault();
+    if (e.target.files != null) {
+      let reader = new FileReader();
+      let file = e.target.files[0];
+
+      reader.onloadend = () => {
+        setProfile({
+          imagePreviewUrl: reader.result,
+        });
+        console.log(reader.result);
+        // localStorage.setItem('imageprofile',reader.result);
+      };
+      reader.readAsDataURL(file);
     }
   };
-
 
   return (
     <Headerparen>
@@ -48,8 +52,9 @@ const Header = () => {
           })}
         </Notification>
         <User>
-          <Userimg src={profile.src} alt="user" />
-          <input type="file" onChange={clickhandler} />
+          <Userimg src={profile.imagePreviewUrl} alt="user" />
+          <label htmlFor="imageuploud" style={{backgroundColor:"green",color:"white",margin:"0 10px",padding:"10px",border:"1px solid black"}}>uploadimage</label>
+          <input id="imageuploud" type="file" onChange={clickhandler} style={{display: 'none'}} />
           <Username>{user && user}</Username>
         </User>
       </Usersection>

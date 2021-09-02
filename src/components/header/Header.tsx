@@ -11,16 +11,16 @@ import {
 } from "./headerstyle";
 import Userimage from "../../assets/img/user.jpg";
 import { useSelector } from "react-redux";
-import { useState } from "react";
+import React, { useEffect, useState } from "react";
 
 const notiarr = ["mail", "bell"];
 
 const Header = () => {
   const user = sessionStorage.getItem("username");
   const [profile, setProfile] = useState<{ imagePreviewUrl: any }>({
-    imagePreviewUrl: "",
+    imagePreviewUrl:""
   });
-  const baseurl = "http://localhost:3000/";
+
   const clickhandler = (e: React.ChangeEvent<HTMLInputElement>) => {
     e.preventDefault();
     if (e.target.files != null) {
@@ -31,12 +31,19 @@ const Header = () => {
         setProfile({
           imagePreviewUrl: reader.result,
         });
-        console.log(reader.result);
-        // localStorage.setItem('imageprofile',reader.result);
+        console.log(JSON.stringify(reader.result));
+        sessionStorage.setItem("imageprofile", JSON.stringify(reader.result));
       };
       reader.readAsDataURL(file);
     }
   };
+
+  useEffect(() => {
+      setProfile({
+        imagePreviewUrl: sessionStorage.getItem("imageprofile"),
+      });
+
+  },[]);
 
   return (
     <Headerparen>
@@ -53,8 +60,24 @@ const Header = () => {
         </Notification>
         <User>
           <Userimg src={profile.imagePreviewUrl} alt="user" />
-          <label htmlFor="imageuploud" style={{backgroundColor:"green",color:"white",margin:"0 10px",padding:"10px",border:"1px solid black"}}>uploadimage</label>
-          <input id="imageuploud" type="file" onChange={clickhandler} style={{display: 'none'}} />
+          <label
+            htmlFor="imageuploud"
+            style={{
+              backgroundColor: "green",
+              color: "white",
+              margin: "0 10px",
+              padding: "10px",
+              border: "1px solid black",
+            }}
+          >
+            uploadimage
+          </label>
+          <input
+            id="imageuploud"
+            type="file"
+            onChange={clickhandler}
+            style={{ display: "none" }}
+          />
           <Username>{user && user}</Username>
         </User>
       </Usersection>

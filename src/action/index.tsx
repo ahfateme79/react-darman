@@ -11,11 +11,15 @@ export const Logoutt = () => {
 export const light = () => {
   return {
     type: "light",
+    bg:"pink",
+    textclolor:"black"
   };
 };
 export const dark = () => {
   return {
     type: "dark",
+    bg:"blue",
+    textcolor:"white"
   };
 };
 

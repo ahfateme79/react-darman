@@ -40,7 +40,7 @@ const Header = () => {
 
   useEffect(() => {
       setProfile({
-        imagePreviewUrl: sessionStorage.getItem("imageprofile"),
+        imagePreviewUrl: JSON.parse(sessionStorage.getItem("imageprofile") || '{}'),
       });
 
   },[]);

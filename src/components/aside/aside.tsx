@@ -22,47 +22,76 @@ const Aside = () => {
   };
 
   // alert(colors);
+  const [lang, setLang] = useState<{
+    type: string;
+    sidebar: {
+      Dashboard: string;
+      Home: string;
+      Products: string;
+      Users: string;
+      Setting: string;
+      Logout: string;
+    };
+  }>({
+    type: "",
+    sidebar: {
+      Dashboard: "",
+      Home: "",
+      Products: "",
+      Users: "",
+      Setting: "",
+      Logout: "",
+    },
+  });
+  const [colors, setColors] = useState<{
+    type: string;
+    bg: string;
+    textcolor: string;
+  }>({
+    type: "",
+    bg: "",
+    textcolor: "",
+  });
+  useEffect(() => {
+    setColors(JSON.parse(window.sessionStorage.getItem("theme") || "{}"));
+    setLang(JSON.parse(window.sessionStorage.getItem("lang") || "{}"));
+  });
+  // console.log(val);
+
   const array = [
     {
-      title: "Home",
+      title: lang.sidebar.Home,
       path: "/",
       icon: "home",
     },
     {
-      title: "Products",
+      title: lang.sidebar.Products,
       path: "/Products",
       icon: "bag",
     },
     {
-      title: "Users",
+      title: lang.sidebar.Users,
       path: "/Users",
       icon: "users",
     },
     {
-      title: "Setting",
+      title: lang.sidebar.Setting,
       path: "/Setting",
       icon: "cog",
     },
     {
-      title: "Logout",
+      title: lang.sidebar.Logout,
       path: "/Login",
       icon: "login",
       click: handleclick,
     },
   ];
-  const [colors, setColors] = useState<{type: string,bg:string,textcolor:string}>({
-    type:'',
-    bg:'',
-    textcolor:''
-  });
-  useEffect(() => {
-    setColors(JSON.parse(window.sessionStorage.getItem("theme") || "{}"));
-  });
-  // console.log(val);
 
   return (
     <Asideparent theme={colors.bg} color={colors.textcolor}>
-      <Asideheading color={colors.textcolor}>Dashboard</Asideheading>
+      <Asideheading color={colors.textcolor}>
+        {lang ? lang.sidebar.Dashboard : "Dashboard"}
+      </Asideheading>
       <Itemsparen>
         {array.map((arr, index) => {
           return (

@@ -22,19 +22,17 @@ const Table: React.FC<Tableprops> = ({ data, head }) => {
           })}
         </Trow>
       </Thead>
-          <Tbody>
-
-      {data?.map((n) => {
-        return (
+      <Tbody>
+        {data?.map((n) => {
+          return (
             <Trow>
               {head.map((a) => {
                 return <Tbcolumn>{n[a]}</Tbcolumn>;
               })}
             </Trow>
-        );
-      })}
-                </Tbody>
-
+          );
+        })}
+      </Tbody>
     </Tablestyle>
   );
 };

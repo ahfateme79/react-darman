@@ -22,17 +22,20 @@ const Aside = () => {
   };
 
   // alert(colors);
-  const [lang, setLang] = useState<{
-    type: string;
-    sidebar: {
-      Dashboard: string;
-      Home: string;
-      Products: string;
-      Users: string;
-      Setting: string;
-      Logout: string;
-    };
-  }>({
+  const [lang, setLang] = useState<
+    | {
+        type: string;
+        sidebar: {
+          Dashboard: string;
+          Home: string;
+          Products: string;
+          Users: string;
+          Setting: string;
+          Logout: string;
+        };
+      }
+    | undefined
+  >({
     type: "",
     sidebar: {
       Dashboard: "",
@@ -60,27 +63,32 @@ const Aside = () => {
 
   const array = [
     {
-      title: lang.sidebar.Home,
+      title: lang?.sidebar?.Home === undefined ? "home" : lang.sidebar.Home,
       path: "/",
       icon: "home",
     },
     {
-      title: lang.sidebar.Products,
+      title:
+        lang?.sidebar?.Products === undefined
+          ? "product"
+          : lang.sidebar.Products,
       path: "/Products",
       icon: "bag",
     },
     {
-      title: lang.sidebar.Users,
+      title: lang?.sidebar?.Users === undefined ? "users" : lang.sidebar.Users,
       path: "/Users",
       icon: "users",
     },
     {
-      title: lang.sidebar.Setting,
+      title:
+        lang?.sidebar?.Setting === undefined ? "setting" : lang.sidebar.Setting,
       path: "/Setting",
       icon: "cog",
     },
     {
-      title: lang.sidebar.Logout,
+      title:
+        lang?.sidebar?.Logout === undefined ? "logout" : lang.sidebar.Logout,
       path: "/Login",
       icon: "login",
       click: handleclick,
@@ -90,7 +98,7 @@ const Aside = () => {
   return (
     <Asideparent theme={colors.bg} color={colors.textcolor}>
       <Asideheading color={colors.textcolor}>
-        {lang ? lang.sidebar.Dashboard : "Dashboard"}
+        {lang?.sidebar?.Dashboard === undefined? "Dashboard"  : lang.sidebar.Dashboard}
       </Asideheading>
       <Itemsparen>
         {array.map((arr, index) => {

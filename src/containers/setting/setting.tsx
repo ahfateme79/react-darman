@@ -2,6 +2,7 @@ import { useState } from "react";
 import { useSelector, useDispatch } from "react-redux";
 // import '../../globalstylee.css'
 import { dark, english, farsi, light } from "../../action";
+import language from "../../reducer/language";
 
 const Setting: React.FC = () => {
   const val = useSelector((state: any) => state.theme);
@@ -26,11 +27,11 @@ const Setting: React.FC = () => {
   return (
     <div>
       <button onClick={handleclick} style={{ backgroundColor: colors.bg }}>
-        {colors.type?.replace(/['"]+/g, "")}
+        {colors?.type != null ? colors.type?.replace(/['"]+/g, "") : "light"}
       </button>
 
       <button style={{ margin: "50px" }} onClick={handlelanguage}>
-        {language.type?.replace(/['"]+/g, "")}
+        {language?.type != null ? language.type?.replace(/['"]+/g, "") : "en"}
       </button>
     </div>
   );

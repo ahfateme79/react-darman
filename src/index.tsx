@@ -1,3 +1,4 @@
+import { useEffect, useState } from "react";
 import ReactDOM from "react-dom";
 import Aside from "./components/aside/aside";
 import "./index.css";
@@ -26,6 +27,7 @@ const Wrapper = styled.div`
 const Left = styled.div`
   width: 80%;
 `;
+
 interface propsprivet {
   children: any;
   res?: any;
@@ -35,7 +37,7 @@ interface propsprivet {
 
 const Privetrout: React.FC<propsprivet> = ({ children, ...res }) => {
   // const logedin = useSelector((state: any) => state.logined);
-  const token=sessionStorage.getItem("auth")
+  const token = sessionStorage.getItem("auth");
 
   return (
     <Route
@@ -50,8 +52,7 @@ const Privetrout: React.FC<propsprivet> = ({ children, ...res }) => {
     />
   );
 };
-
-const Index = () => {
+const Index: React.FC = () => {
   // const val = useSelector((state: any) => state.theme);
 
   return (
@@ -70,7 +71,7 @@ const Index = () => {
                     let Container = require(`${n.containerPath}`).default;
                     return (
                       <Privetrout exact path={n.path}>
-                        <Container />
+                        <Container/>
                       </Privetrout>
                     );
                   })}
